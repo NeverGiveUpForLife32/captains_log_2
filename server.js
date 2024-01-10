@@ -20,7 +20,17 @@ mongoose.connection.once("open", () => {
 // INDUCES
 
 // INDEX
-// list all log
+// list all logs
+app.get("/logs", async (req, res) => {
+  try {
+    const foundLogs = await Log.find({});
+    res.render("logs/Index", {
+      logs: foundLogs,
+    });
+  } catch (error) {
+    res.status(400).send({ message: error.message });
+  }
+});
 
 // NEW
 // show the user a form to fill out to create a log
