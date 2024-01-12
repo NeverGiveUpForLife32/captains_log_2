@@ -7,10 +7,14 @@ function Index (props) {
             <a href="/logs/new">Create a new Log Here</a>
             <ul>
                 {
-                    props.logs.mp((log) => {
+                    props.logs.map((log) => {
                         return (
                             <li key={log._id}>
-                                <a href={`/logs/${log._id}`}>{log.name}</a>
+                                <a href={`/logs/${log._id}`}>{log.title}</a> is a {log.entry} and {log.shipIsBroken ? ' is broken' : 'is not broken'}
+                                <form action={`/logs/${log._id}?_method=DELETE`} method='POST'>
+                                    <input type='submit' value='delete this'></input>
+                                </form>
+                                // <a href ={`/logs/${log._id}/edit`}><button>Edit This</button></a>
                             </li>
                         )
                     })
@@ -18,6 +22,6 @@ function Index (props) {
             </ul>
         </div>
     )
-}
+            }
 
 module.exports = Index
