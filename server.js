@@ -46,6 +46,19 @@ app.get("/logs/new", (req, res) => {
 
 // CREATE
 // backend only functionality that is used to create a log
+app.post("/logs", async (req, res) => {
+  if (req.body.shipIsBroken === "on") {
+    req.body.shipIsBroken = true;
+  } else {
+    req.body.shipIsBroken = false;
+  }
+  try {
+    const createdLog = await Log.create(req.body);
+    res.redirect(`/logs/${createdLog._id}`);
+  } catch (error) {
+    res.status(400).send({ message: error.message });
+  }
+});
 
 // EDIT
 // show you a form that lets you edit the log

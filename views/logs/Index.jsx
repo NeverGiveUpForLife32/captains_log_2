@@ -4,7 +4,7 @@ function Index (props) {
     return (
         <div>
             <h1>Logs Index Page</h1>
-            <a href="/logs/new">Creat a new Log Here</a>
+            <a href="/logs/new">Create a new Log Here</a>
             <ul>
                 {
                     props.logs.mp((log) => {
